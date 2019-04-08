@@ -1,0 +1,14 @@
+{{- if .Values.persistence.enabled -}}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: sensu-storage
+spec:
+  capacity:
+    storage: {{ .Values.persistence.storage.size }}
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: {{ .Values.persistence.nfs.server }}
+    path: {{ .Values.persistence.nfs.path }}
+{{- end -}}
